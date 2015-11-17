@@ -17,8 +17,9 @@ class UsersController < ApplicationController
   def show
     # render json: params
     user = User.find_by(id: params[:id])
+    text = user.to_json.to_s + "\n" + user.comments.to_json.to_s
     if user
-      render json: user
+      render text: text
     else
       render text: "No user by that name"
     end
